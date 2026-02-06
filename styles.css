@@ -1,0 +1,437 @@
+/* ========================================
+   RESET Y CONFIGURACIÓN BASE
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #0a0a0a;
+    --text-color: #f5f5f5;
+    --accent-color: #fff;
+    --overlay-color: rgba(0, 0, 0, 0.3);
+    --transition-speed: 0.8s;
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow: hidden;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================
+   HEADER
+======================================== */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 3rem;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--accent-color);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.subtitle {
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+    opacity: 0.8;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ========================================
+   INDICADOR DE POSICIÓN
+======================================== */
+
+.position-indicator {
+    position: fixed;
+    top: 50%;
+    right: 3rem;
+    transform: translateY(-50%);
+    z-index: 100;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.current-slide {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.separator {
+    opacity: 0.5;
+}
+
+.total-slides {
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+
+/* ========================================
+   SCROLL HINT
+======================================== */
+
+.scroll-hint {
+    position: fixed;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.scroll-hint.hidden {
+    opacity: 0;
+}
+
+.scroll-icon {
+    width: 24px;
+    height: 40px;
+    border: 2px solid var(--accent-color);
+    border-radius: 12px;
+    margin: 0 auto 1rem;
+    position: relative;
+}
+
+.scroll-wheel {
+    width: 4px;
+    height: 8px;
+    background: var(--accent-color);
+    border-radius: 2px;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scroll-animation 2s infinite;
+}
+
+@keyframes scroll-animation {
+    0% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) translateY(16px);
+        opacity: 0;
+    }
+}
+
+.scroll-hint p {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 300;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* ========================================
+   GALERÍA CONTAINER
+======================================== */
+
+.gallery-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    will-change: transform;
+}
+
+/* ========================================
+   SLIDES
+======================================== */
+
+.gallery-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity var(--transition-speed) ease, 
+                transform var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+}
+
+.gallery-slide.active {
+    opacity: 1;
+    transform: translateY(0);
+    z-index: 2;
+}
+
+.gallery-slide.prev {
+    opacity: 0;
+    transform: translateY(-100%);
+    z-index: 1;
+}
+
+/* ========================================
+   IMAGEN Y WRAPPER
+======================================== */
+
+.image-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+/* Parallax effect en imagen activa */
+.gallery-slide.active .gallery-image {
+    transform: scale(1.05);
+}
+
+.gallery-slide.active.scrolling-down .gallery-image {
+    transform: scale(1) translateY(-5%);
+}
+
+.gallery-slide.active.scrolling-up .gallery-image {
+    transform: scale(1) translateY(5%);
+}
+
+/* Overlay sutil para mejorar legibilidad del texto */
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 60%,
+        rgba(0, 0, 0, 0.4) 100%
+    );
+    pointer-events: none;
+}
+
+/* ========================================
+   INFORMACIÓN DEL SLIDE
+======================================== */
+
+.slide-info {
+    position: absolute;
+    bottom: 4rem;
+    left: 3rem;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
+}
+
+.gallery-slide.active .slide-info {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.7);
+}
+
+.slide-location {
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.9;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
+}
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 3rem;
+    z-index: 100;
+    text-align: center;
+    pointer-events: none;
+}
+
+.footer p {
+    font-size: 0.7rem;
+    opacity: 0.5;
+    letter-spacing: 0.1em;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ========================================
+   RESPONSIVE - TABLET
+======================================== */
+
+@media (max-width: 1024px) {
+    .header {
+        padding: 1.5rem 2rem;
+    }
+
+    .logo h1 {
+        font-size: 1.25rem;
+    }
+
+    .position-indicator {
+        right: 2rem;
+        font-size: 0.9rem;
+    }
+
+    .current-slide {
+        font-size: 1.25rem;
+    }
+
+    .slide-info {
+        bottom: 3rem;
+        left: 2rem;
+    }
+
+    .slide-title {
+        font-size: 2rem;
+    }
+
+    .slide-location {
+        font-size: 0.9rem;
+    }
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE
+======================================== */
+
+@media (max-width: 768px) {
+    .header {
+        padding: 1.5rem;
+    }
+
+    .logo h1 {
+        font-size: 1.1rem;
+    }
+
+    .subtitle {
+        font-size: 0.65rem;
+    }
+
+    .position-indicator {
+        right: 1.5rem;
+        font-size: 0.8rem;
+    }
+
+    .current-slide {
+        font-size: 1.1rem;
+    }
+
+    .total-slides {
+        font-size: 0.8rem;
+    }
+
+    .scroll-hint {
+        bottom: 2rem;
+    }
+
+    .scroll-hint p {
+        font-size: 0.7rem;
+    }
+
+    .slide-info {
+        bottom: 5rem;
+        left: 1.5rem;
+        right: 1.5rem;
+    }
+
+    .slide-title {
+        font-size: 1.5rem;
+    }
+
+    .slide-location {
+        font-size: 0.8rem;
+    }
+
+    .footer {
+        padding: 1.5rem;
+    }
+
+    .footer p {
+        font-size: 0.65rem;
+    }
+}
+
+/* ========================================
+   OPTIMIZACIONES DE RENDIMIENTO
+======================================== */
+
+/* Acelerar con GPU */
+.gallery-slide,
+.gallery-image,
+.slide-info {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* Prevenir selección de texto durante animaciones */
+.gallery-container {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Suavizar imágenes */
+img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crovargas - Nature Photography</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header con nombre del fotógrafo -->
+    <header class="header">
+        <div class="logo">
+            <h1>Crovargas</h1>
+            <p class="subtitle">Nature Photography</p>
+        </div>
+    </header>
+
+    <!-- Indicador de posición -->
+    <div class="position-indicator">
+        <span class="current-slide">01</span>
+        <span class="separator">/</span>
+        <span class="total-slides">08</span>
+    </div>
+
+    <!-- Instrucciones de scroll (desaparecen tras interacción) -->
+    <div class="scroll-hint">
+        <div class="scroll-icon">
+            <div class="scroll-wheel"></div>
+        </div>
+        <p>Scroll para explorar</p>
+    </div>
+
+    <!-- Contenedor principal de la galería -->
+    <main class="gallery-container">
+        <div class="gallery-wrapper" id="galleryWrapper">
+            
+            <!-- Slide 1 -->
+            <section class="gallery-slide active" data-index="0">
+                <div class="image-wrapper">
+                    <img 
+                        src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80" 
+                        alt="Mountain landscape at sunrise"
+                        loading="eager"
+                        class="gallery-image"
+                    >
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-info">
+                    <h2 class="slide-title">Mountain Majesty</h2>
+                    <p class="slide-location">Canadian Rockies</p>
+                </div>
+            </section>
+
+            <!-- Slide 2 -->
+            <section class="gallery-slide" data-index="1">
+                <div class="image-wrapper">
+                    <img 
+                        src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&q=80" 
+                        alt="Forest path with sunlight"
+                        loading="lazy"
+                        class="gallery-image"
+                    >
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-info">
+                    <h2 class="slide-title">Whispering Woods</h2>
+                    <p class="slide-location">Pacific Northwest</p>
+                </div>
+            </section>
+
+            <!-- Slide 3 -->
+            <section class="gallery-slide" data-index="2">
+                <div class="image-wrapper">
+                    <img 
+                        src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1920&q=80" 
+                        alt="Misty lake at dawn"
+                        loading="lazy"
+                        class="gallery-image"
+                    >
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-info">
+                    <h2 class="slide-title">Silent Waters</h2>
+                    <p class="slide-location">Lake District</p>
+                </div>
+            </section>
+
+            <!-- Slide 4 -->
+            <section class="gallery-slide" data-index="3">
+                <div class="image-wrapper">
+                    <img 
+                        src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1920&q=80" 
+                        alt="Northern lights over mountains"
+                        loading="lazy"
+                        class="gallery-image"
+                    >
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-info">
+                    <h2 class="slide-title">Aurora Dreams</h2>
+                    <p class="slide-location">Iceland</p>
+                </div>
+            </section>
+
+            <!-- Slide 5 -->
+            <section class="gallery-slide" data-index="4">
+                <div class="image-wrapper">
+                    <img 
+                        src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1920&q=80" 
+                        alt="Desert dunes at sunset"
+                        loading="lazy"
+                        class="gallery-image"
+                    >
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-info">
+                    <h2 class="slide-title">Golden Sands</h2>
+                    <p class="slide-location">Sahara Desert</p>
+                </div>
+            </section>
+
+            <!-- Slide 6 -->
+            <section class="gallery-slide" data-index="5">
+                <div class="image-wrapper">
+                    <img 
+                        src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=1920&q=80" 
+                        alt="Waterfall in tropical forest"
+                        loading="lazy"
+                        class="gallery-image"
+                    >
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-info">
+                    <h2 class="slide-title">Cascade Flow</h2>
+                    <p class="slide-location">Costa Rica</p>
+                </div>
+            </section>
+
+            <!-- Slide 7 -->
+            <section class="gallery-slide" data-index="6">
+                <div class="image-wrapper">
+                    <img 
+                        src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=1920&q=80" 
+                        alt="Alpine meadow with wildflowers"
+                        loading="lazy"
+                        class="gallery-image"
+                    >
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-info">
+                    <h2 class="slide-title">Wildflower Symphony</h2>
+                    <p class="slide-location">Swiss Alps</p>
+                </div>
+            </section>
+
+            <!-- Slide 8 -->
+            <section class="gallery-slide" data-index="7">
+                <div class="image-wrapper">
+                    <img 
+                        src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80" 
+                        alt="Ocean waves at sunset"
+                        loading="lazy"
+                        class="gallery-image"
+                    >
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="slide-info">
+                    <h2 class="slide-title">Endless Horizon</h2>
+                    <p class="slide-location">Maldives</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer minimalista -->
+    <footer class="footer">
+        <p>&copy; 2026 Crovargas Photography</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
